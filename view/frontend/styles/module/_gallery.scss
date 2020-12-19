@@ -96,7 +96,15 @@
             }
         }
 
+        // Bug in WP with cropped images
+        figure {
+            flex-grow: 1;
         }
+    }
+
+    // Bug in WP with cropped images
+    &.is-cropped .blocks-gallery-grid {
+        flex-grow: 1;
     }
 
     &.columns-1 .blocks-gallery-image,
