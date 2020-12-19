@@ -17,6 +17,13 @@
         justify-content: center;
         position: relative;
 
+        // On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
+        width: calc(50% - 1em);
+
+        &:nth-of-type(even) {
+            margin-right: 0;
+        }
+
         figure {
             margin: 0;
             height: 100%;
@@ -33,10 +40,8 @@
             display: block;
             max-width: 100%;
             height: auto;
-        }
 
-        // IE doesn't handle cropping, so we need an explicit width here.
-        img {
+            // IE doesn't handle cropping, so we need an explicit width here.
             width: 100%;
 
             // IE11 doesn't read rules inside this query. They are applied only to modern browsers.
@@ -51,7 +56,7 @@
             width: 100%;
             max-height: 100%;
             overflow: auto;
-            padding: 40px 10px 9px;
+            padding: 3em 0.77em 0.7em;
             color: $color-white;
             text-align: center;
             font-size: $font-size__base;
@@ -61,11 +66,17 @@
                 rgba($color-black, 0.3) 70%,
                 transparent
             );
+            box-sizing: border-box;
+            margin: 0;
 
             img {
                 display: inline;
             }
         }
+    }
+
+    figcaption {
+        flex-grow: 1;
     }
 
     // Cropped
@@ -84,15 +95,7 @@
                 object-fit: cover;
             }
         }
-    }
 
-    // On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
-    .blocks-gallery-image,
-    .blocks-gallery-item {
-        width: calc(50% - #{$wp-gap-size});
-
-        &:nth-of-type(even) {
-            margin-right: 0;
         }
     }
 
@@ -134,14 +137,13 @@
     // Last item always needs margins reset.
     .blocks-gallery-image:last-child,
     .blocks-gallery-item:last-child {
-        // stylelint-disable-next-line declaration-no-important
-        margin-right: 0 !important;
+        margin-right: 0;
     }
 
     // Apply max-width to floated items that have no intrinsic width.
     &.alignleft,
     &.alignright {
-        max-width: $wp-content-width / 2;
+        max-width: ($wp-content-width / 2);
         width: 100%;
     }
 
